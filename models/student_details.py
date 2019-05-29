@@ -9,7 +9,7 @@ class student_details(models.Model):
     _name = 'student.details'
     _inherit='mail.thread'
     _description="Student Information"
-    _rec_name='student_name'
+    _rec_name='student_code'
     _sql_constraints = [('student_code','unique(student_code)', 'Student code must be unique')]
 
     #Basic fields

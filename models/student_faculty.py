@@ -21,7 +21,7 @@ class student_faculty(models.Model):
     student_count=fields.Integer(string='Student count',compute='compute_student_counts')
     course_count=fields.Integer(string='Course count',compute='compute_course_count')
     
-    faculty_student_ids=fields.Many2many('student.details','student_name',string="Students Handling")
+    faculty_student_ids=fields.Many2many('student.details',string="Students Handling")
     
     faculty_course_ids=fields.Many2many('student.course',string='Courses Taken')
     
