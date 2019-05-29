@@ -11,7 +11,7 @@ class student_fee(models.Model):
     
     #Relational Fields
     fee_stu_id=fields.Many2one('student.details',string="Student Id ",ondelete='restrict')
-    course_fee_id=fields.Many2one('student.course',string="Course name")
+    course_fee_id=fields.Many2one('student.course')
     
     
 #     student_name = fields.Char('Student Name')
