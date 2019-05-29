@@ -13,7 +13,7 @@ class student_details(models.Model):
     _sql_constraints = [('student_code','unique(student_code)', 'Student code must be unique')]
 
     #Basic fields
-    student_code=fields.Char('Student id',required=True)
+    student_code=fields.Char('Student id')
     student_name = fields.Char('Student Name')
     email = fields.Char('Email', track_visibility='onchange')
     contact = fields.Char('Contact Number',track_visibility='always')

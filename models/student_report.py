@@ -7,11 +7,11 @@ class student_report(models.Model):
     _sql_constraints = [('report_code','unique(report_code)', 'Report code must be unique')]
     
     student_name=fields.Char("Student Name")
-    report_code=fields.Char("Report Id",required=True)
+    report_code=fields.Char("Report Id")
     report_card_terms=fields.Char("Semester No")
     result=fields.Char("Result")
     grade=fields.Char("Grade")
     
-    report_student_id = fields.Many2one('student.details', string="Student Id", ondelete="restrict")
+    report_student_id = fields.Many2one('student.details', string="Student Id")
     
-    faculty_report_id=fields.Many2one('student.faculty', string="Faculty Id", ondelete="cascade")
+    faculty_report_id=fields.Many2one('student.faculty', string="Faculty Id", ondelete='restrict')
