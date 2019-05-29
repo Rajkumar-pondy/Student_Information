@@ -14,4 +14,4 @@ class student_report(models.Model):
     
     report_student_id = fields.Many2one('student.details', string="Student Id", ondelete="restrict")
     
-    faculty_report_id=fields.Many2one('student.faculty', string="Faculty Id")
+    faculty_report_id=fields.Many2one('student.faculty', string="Faculty Id", ondelete="cascade")

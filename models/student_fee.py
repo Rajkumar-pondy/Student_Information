@@ -10,7 +10,7 @@ class student_fee(models.Model):
     tution_fee=fields.Float("Tuition Fee")
     
     #Relational Fields
-    fee_stu_id=fields.Many2one('student.details',string="Student Id ",ondelete="restrict")
+    fee_stu_id=fields.Many2one('student.details',string="Student Id ",ondelete='restrict')
     
 #     student_name = fields.Char('Student Name')
 #     student_code=fields.Integer("Student Id")
