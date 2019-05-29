@@ -1,0 +1,127 @@
+<odoo>
+	
+		<record id="student_tree_view" model="ir.ui.view">
+			<field name="name">student_tree_view</field>
+			<field name="model">student.details</field>
+			<field name= "arch" type = "xml">
+				<tree string="Student Information">
+					<field name="student_code"/>
+					<field name="student_name"/>
+			     	<field name="email"/>
+			 		<field name="contact"/>
+			 		<field name="dob"/>
+			 		<field name="age"/>
+			 		<field name="registration_date"/>
+					<field name="gender"/>
+					<field name="department"/>
+				</tree>
+			</field>
+		</record>
+	
+	
+	
+	<!-- <record model="ir.ui.view" id="test_kanban_view">
+    <field name="name">student_kanban_view</field>
+    <field name="model">student.student</field>
+    <field name="type">kanban</field>
+    <field name="arch" type="xml">
+        <kanban> 
+          <field name="image"/>
+          <field name="student_code"/>
+            <templates>
+                <t t-name="kanban-box">
+                   <div class="oe_resource_vignette">
+                        <div class="oe_kanban_image">
+                            <a type="open">
+                            <img t-att-src="kanban_image('student.student','image')" alt="student image"/></a>
+                   </div>
+                        <div class="oe_kanban_details">
+                            <ul type="None">
+                            <li><b>Name:</b><field name="student_name"/></li>
+                            <li><b>Department:</b><field name="department"/></li>   
+							<li><b>Email:</b><field name="email" widget='email'/></li>                                
+                            </ul>
+                        </div>
+                   </div>                       
+                </t>
+            </templates>
+        </kanban>
+    </field>
+</record> -->
+		
+		
+		
+		
+		<record id="student_form_view" model="ir.ui.view">
+			<field name="name">student_form_view</field>
+			<field name="model">student.details</field>
+			<field name="arch" type="xml">
+				<form id="student_information.student_form_view">
+				<header>
+				        <button name="calculate_age" type="object" string="Calculate Age" class="oe_highlight"/>
+				        <button name="assignments" string="Assignments" class="oe_highlight"/>
+				        <button name="Complaints" string="Complaints" class="oe_highlight"/>
+				 </header>
+					<sheet>
+					 <div id="student_container">
+                        <field name="image" widget="image" class="oe_avatar"/>
+                        <div class="oe_title">
+                            <label for="student_name" class="oe_edit_only"/>
+                            <h1>
+                                <field name="student_name" placeholder="Student's Name"/>
+                            </h1>
+                      </div>
+                      </div>
+					     <group string="Student Information">
+						 	<group>
+						 	    <field name="student_code"/>
+						 	    <field name="gender"/>
+						 		<field name="dob"/>
+						 		<field name="age"/>
+						 	</group>
+						 	<group>
+						 	    <field name="department"/>
+						 	    <field name="registration_date"/>
+						 		<field name="email"/>
+						 		<field name="contact"/>
+						 	</group>
+						 </group>
+						 
+						 <notebook>
+							
+							<page string="Report Card">
+						 	 	<field name="student_report_ids" readonly="1"/>
+							</page>
+							
+							<page string="Fee Receipt">
+								<field name="student_receipt_ids"/>
+							</page>
+						     
+						     <page string="Course">
+								<field name="student_course_ids"/>
+							</page>
+						
+						</notebook> 
+					
+					</sheet>
+					
+					<div class="oe_chatter">
+					<field name="message_follower_ids" widget="mail_followers"/>
+					<field name="message_ids" widget="mail_thread"/>
+					</div>
+				</form>
+			</field>
+		</record>
+	 
+	 <record model="ir.actions.act_window" id="student_information_action_window">
+      <field name="name">Student Details</field>
+      <field name="res_model">student.details</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+   
+	
+		<menuitem id="menu_college_main" name="College Management"/>
+		<menuitem id="menu_student_main" name="Student" parent="menu_college_main"/>
+		<menuitem id="menu_student_info" name="Student Info" parent="menu_student_main" action="student_information_action_window"/>	
+		
+</odoo>
