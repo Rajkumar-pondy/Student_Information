@@ -6,6 +6,7 @@
 			<field name= "arch" type = "xml">
 			 <tree string="Student Report Card">
 			    <field name="report_student_id"/>
+			    <field name="faculty_report_id"/>
 			    <field name="student_name"/>
 				<field name="report_code"/>
 				<field name="report_card_terms"/>	
@@ -22,6 +23,7 @@
 			 <sheet>
 			 <group>
 			    <field name="report_student_id"/>
+			    <field name="faculty_report_id"/>
 			    <field name="student_name"/>
 				<field name="report_code"/>
 				<field name="report_card_terms"/>	
