@@ -31,6 +31,7 @@ class student_details(models.Model):
     student_receipt_ids=fields.One2many('student.fee','fee_stu_id')
     
     student_course_ids=fields.One2many('student.course','course_stu_id')
+    
 
 
     #Compute fields    

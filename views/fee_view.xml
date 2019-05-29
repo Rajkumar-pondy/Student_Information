@@ -20,6 +20,7 @@
 			 <sheet>
 			 <group>
 				<field name="fee_stu_id"/>
+				<field name="course_fee_id"/>
 				<field name="fee_code"/>
 				<field name="semester_no"/>
 				<field name="tution_fee"/>

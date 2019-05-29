@@ -12,8 +12,8 @@ class student_course(models.Model):
     course_name=fields.Char("Course Name")
     
     #Relation Fields
-    course_stu_id=fields.Many2one('student.details',string="Student Id")
+    course_stu_id=fields.Many2one('student.details',string="Student Id", ondelete='restrict')
 
-
+    fee_course_ids=fields.One2many('student.course','course_fee_id')
 
     
