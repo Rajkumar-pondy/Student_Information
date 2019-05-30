@@ -5,8 +5,8 @@
 			<field name="model">student.course</field>
 			<field name= "arch" type = "xml">
 			 <tree string="Student Course">
-			    <field name="student_name"/>
 				<field name="course_stu_id"/>
+				<field name="student_name"/>
 			    <field name="course_code"/>	
 				<field name="course_name"/>
 				<field name="fee_course_ids"/>
@@ -20,8 +20,8 @@
 			 <form string="Student Course">
 			 <sheet>
 			 <group>
-			    <field name="student_name"/>
 			    <field name="course_stu_id"/>
+			    <field name="student_name"/>
 			    <field name="course_code"/>	
 				<field name="course_name"/>
 				<field name="fee_course_ids"/>
