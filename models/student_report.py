@@ -10,6 +10,6 @@ class student_report(models.Model):
     result=fields.Char("Result")
     grade=fields.Char("Grade")
     
-    student_id_report = fields.Many2one('student.details', string="Student Id")
+    student_id_report = fields.Many2one('student.details', string="Student Id",delegate=True)
     
-    faculty_report_id=fields.Many2one('student.faculty', string="Faculty Name",ondelete='restrict')
+    faculty_report_id=fields.Many2one('student.faculty', string="Faculty Name",ondelete='restrict',inherit=True)

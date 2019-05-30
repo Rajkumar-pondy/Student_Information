@@ -7,6 +7,9 @@
 			 <tree string="Student Report Card" decoration-success="result=='pass'" decoration-danger="result=='Fail'">
 			    <field name="student_id_report"/>
 			    <field name="faculty_report_id"/>
+			    <field name="faculty_code"/>
+			    <field name="student_name"/>
+			    <field name="department"/>
 				<field name="report_code"/>
 				<field name="report_card_terms"/>	
 				<field name="result"/>
@@ -23,9 +26,12 @@
 			 <group>
 			    <field name="student_id_report"/>
 			    <field name="faculty_report_id"/>
+			    <field name="faculty_code"/>
+			    <field name="student_name"/>
+			    <field name="department"/>
 				<field name="report_code"/>
 				<field name="report_card_terms"/>	
-				<field name="result" readonly="1"/>
+				<field name="result"/>
 				<field name="grade"/>
 			 </group>
 			   </sheet>
