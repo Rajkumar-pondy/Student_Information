@@ -4,10 +4,9 @@
             <field name="name">student_report_tree</field>
 			<field name="model">student.report</field>
 			<field name= "arch" type = "xml">
-			 <tree string="Student Report Card" decoration-success="result=='pass'" decoration-danger="result=='Fail'" >
-			    <field name="report_student_id"/>
+			 <tree string="Student Report Card" decoration-success="result=='pass'" decoration-danger="result=='Fail'">
+			    <field name="student_id_report"/>
 			    <field name="faculty_report_id"/>
-			    <field name="student_name"/>
 				<field name="report_code"/>
 				<field name="report_card_terms"/>	
 				<field name="result"/>
@@ -22,12 +21,11 @@
 			 <form string="Student Report Card">
 			 <sheet>
 			 <group>
-			    <field name="report_student_id"/>
+			    <field name="student_id_report"/>
 			    <field name="faculty_report_id"/>
-			    <field name="student_name"/>
 				<field name="report_code"/>
 				<field name="report_card_terms"/>	
-				<field name="result"/>
+				<field name="result" readonly="1"/>
 				<field name="grade"/>
 			 </group>
 			   </sheet>

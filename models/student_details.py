@@ -26,7 +26,7 @@ class student_details(models.Model):
     
 
     #Relational_fields
-    student_report_ids= fields.One2many('student.report','report_student_id',readonly=True)
+    report_student_ids= fields.One2many('student.report','student_id_report')
     
     student_receipt_ids=fields.One2many('student.fee','fee_stu_id')
     

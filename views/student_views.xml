@@ -90,7 +90,7 @@
 						 <notebook>
 							
 							<page string="Report Card">
-						 	 	<field name="student_report_ids" readonly="1"/>
+						 	 	<field name="report_student_ids" readonly="1"/>
 							</page>
 							
 							<page string="Fee Receipt">
