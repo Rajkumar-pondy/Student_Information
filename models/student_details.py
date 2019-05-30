@@ -26,7 +26,7 @@ class student_details(models.Model):
     
 
     #Relational_fields
-    report_student_ids= fields.One2many('student.report','student_id_report',compute='name_get')
+    report_student_ids= fields.One2many('student.report','student_id_report',required=True)
     
     student_receipt_ids=fields.One2many('student.fee','fee_stu_id')
     
@@ -49,13 +49,5 @@ class student_details(models.Model):
                 match=re.match('^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$', rec.email)
                 if match==None:
                     raise ValidationError('Not a valid Email ID')
-                
-    @api.multi
-    def name_get(self,cr,uid,ids,context={}):
-        if not len(ids):
-            return []
-        res=[]
-        for student in self.browse(cr,uid,ids,context=context):
-            res.append((student.student_code,student.student_name+','+student.student_code))
-            return res
-                
+    
+    
