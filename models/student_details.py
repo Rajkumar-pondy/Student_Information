@@ -50,3 +50,12 @@ class student_details(models.Model):
                 if match==None:
                     raise ValidationError('Not a valid Email ID')
                 
+    @api.multi
+    def name_get(self,cr,uid,ids,context={}):
+        if not len(ids):
+            return []
+        res=[]
+        for student in self.browse(cr,uid,ids,context=context):
+            res.append((student.student_code,student.student_name+','+student.student_code))
+            return res
+                

@@ -7,7 +7,6 @@
 			 <tree string="Student Report Card" decoration-success="result=='pass'" decoration-danger="result=='Fail'">
 			    <field name="student_id_report"/>
 			    <field name="faculty_report_id"/>
-			    <field name="faculty_code"/>
 			    <field name="student_name"/>
 			    <field name="department"/>
 				<field name="report_code"/>
@@ -26,7 +25,6 @@
 			 <group>
 			    <field name="student_id_report"/>
 			    <field name="faculty_report_id"/>
-			    <field name="faculty_code"/>
 			    <field name="student_name"/>
 			    <field name="department"/>
 				<field name="report_code"/>
