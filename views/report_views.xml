@@ -4,7 +4,7 @@
             <field name="name">student_report_tree</field>
 			<field name="model">student.report</field>
 			<field name= "arch" type = "xml">
-			 <tree string="Student Report Card">
+			 <tree string="Student Report Card" decoration-success="result=='pass'" decoration-danger="result=='Fail'" >
 			    <field name="report_student_id"/>
 			    <field name="faculty_report_id"/>
 			    <field name="student_name"/>
