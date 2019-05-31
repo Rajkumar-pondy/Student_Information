@@ -59,8 +59,6 @@
 			<field name="arch" type="xml">
 				<form id="student_information.student_form_view">
 				<header>
-				    <button string="Set to edit" type="object" name="edit_progressbar" attrs="{'invisible': [('state', '=', 'edit')]}"/>
-	  				<button string="Set to started" type="object" name="started_progressbar" class="oe_highlight" attrs="{'invisible': [('state','!=','edit')]}"/>
 	    			<button string="In progress" type="object" name="progress_progressbar" attrs="{'invisible': [('state','=','progress')]}"/>
 	    			<button string="Done" type="object" name="done_progressbar" attrs="{'invisible': [('state','=','finished')]}"/>
 	    			<field name="state" widget="statusbar"/>    

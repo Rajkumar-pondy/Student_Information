@@ -24,11 +24,9 @@ class student_details(models.Model):
     age = fields.Integer("Age",compute='calculate_age',store=True)
     department = fields.Char("Department Name")
     state=fields.Selection([
-                            ('edit','Edit'),
-                            ('started','Started'),
                             ('progress','In progress'),
                             ('finished','Done'),
-                            ], default='edit')
+                            ], default='progress',track_visibility='always')
     
 
     #Relational_fields
@@ -55,21 +53,7 @@ class student_details(models.Model):
                 match=re.match('^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$', rec.email)
                 if match==None:
                     raise ValidationError('Not a valid Email ID')
-                
-    @api.one
-    def edit_progressbar(self):
-        self.write({
-                    'state': 'edit',
-                    })
- 
-#This function is triggered when the user clicks on the button 'Set to started'
-    @api.one
-    def started_progressbar(self):
-        self.write({
-                    'state': 'started'
-                    })
- 
-#This function is triggered when the user clicks on the button 'In progress'
+    
     @api.one
     def progress_progressbar(self):
         self.write({
