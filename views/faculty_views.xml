@@ -49,8 +49,8 @@
 	                       <field name="student_count" widget="statinfo" String="Student Details"/>
 			         	  </button> 
 			         	  
-			         	  <button name="compute_course_count" class="oe_stat_button" type="object" attrs="{'invisible': [('course_count','=',0)]}" 
-	                         icon="fa-list">
+			         	  <button name="compute_course_count" class="oe_stat_button" type="object" attrs="{'invisible': [('course_count','=',0)]}">
+			         	   <span class="glyphicon glyphicon-list" aria-label="Student count"/>
 	                       <field name="course_count" widget="statinfo" String="Course Details"/>
 			         	  </button> 
 	          
