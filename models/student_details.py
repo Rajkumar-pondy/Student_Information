@@ -55,4 +55,31 @@ class student_details(models.Model):
                 match=re.match('^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$', rec.email)
                 if match==None:
                     raise ValidationError('Not a valid Email ID')
+                
+    @api.one
+    def edit_progressbar(self):
+        self.write({
+                    'state': 'edit',
+                    })
+ 
+#This function is triggered when the user clicks on the button 'Set to started'
+    @api.one
+    def started_progressbar(self):
+        self.write({
+                    'state': 'started'
+                    })
+ 
+#This function is triggered when the user clicks on the button 'In progress'
+    @api.one
+    def progress_progressbar(self):
+        self.write({
+                    'state': 'progress'
+        })
+ 
+#This function is triggered when the user clicks on the button 'Done'
+    @api.one
+    def done_progressbar(self):
+        self.write({
+                    'state': 'finished',
+                    })
    
