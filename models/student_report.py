@@ -10,16 +10,7 @@ class student_report(models.Model):
     result=fields.Char("Result")
     grade=fields.Char("Grade")
     
-    student_id_report = fields.Many2one('student.details', string="Student Id",delegate=True,required=True)
+    student_id_report = fields.Many2one('student.details', string="Student Name",delegate=True,required=True)
     
     faculty_report_id=fields.Many2one('student.faculty', string="Faculty Name",ondelete='restrict')
-    
-#     @api.multi
-#     def name_get(self):
-#         result= []
-#         for record in self:
-#             rec_name="%s %s" % (record.student_name, record.department)
-#             result.append((record.id, rec_name))
-#         return result
-#     
-#    
+   

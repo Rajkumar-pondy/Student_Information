@@ -6,7 +6,7 @@
 			<field name= "arch" type = "xml">
 			 <tree string="Student Course">
 				<field name="course_stu_id"/>
-				<field name="student_name"/>
+				<field name="student_code"/>
 			    <field name="course_code"/>	
 				<field name="course_name"/>
 				<field name="fee_course_ids"/>
@@ -21,7 +21,7 @@
 			 <sheet>
 			 <group>
 			    <field name="course_stu_id"/>
-			    <field name="student_name"/>
+			    <field name="student_code"/>
 			    <field name="course_code"/>	
 				<field name="course_name"/>
 				<field name="fee_course_ids"/>

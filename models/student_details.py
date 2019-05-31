@@ -9,7 +9,7 @@ class student_details(models.Model):
     _name = 'student.details'
     _inherit='mail.thread'
     _description="Student Information"
-    _rec_name='student_code'
+    _rec_name='student_name'
     _sql_constraints = [('student_code','unique(student_code)', 'Student code must be unique')]
 
     #Basic fields
@@ -23,6 +23,12 @@ class student_details(models.Model):
     gender = fields.Selection([('male','Male'),('female','Female')], string='Gender')
     age = fields.Integer("Age",compute='calculate_age',store=True)
     department = fields.Char("Department Name")
+    state=fields.Selection([
+                            ('edit','Edit'),
+                            ('started','Started'),
+                            ('progress','In progress'),
+                            ('finished','Done'),
+                            ], default='edit')
     
 
     #Relational_fields
@@ -49,5 +55,4 @@ class student_details(models.Model):
                 match=re.match('^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$', rec.email)
                 if match==None:
                     raise ValidationError('Not a valid Email ID')
-    
-    
+   
