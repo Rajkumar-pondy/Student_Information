@@ -53,8 +53,7 @@
 	                         icon="fa-list">
 	                       <field name="course_count" widget="statinfo" String="Course Details"/>
 			         	  </button> 
-	          
-	                  </div>
+	                </div>
 	               </div>
 					
 					 <group string="Faculty Information">
