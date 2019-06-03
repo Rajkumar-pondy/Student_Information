@@ -5,7 +5,7 @@
 			<field name="model">student.details</field>
 			<field name= "arch" type = "xml">
              <tree string="Student Information" decoration-primary="department=='CSE'" decoration-info="department=='ECE'" 
-             default_order="registration_date asc" limit='50' editable="top" on_write="student_form_view">
+             default_order="registration_date asc" limit='50' editable="top" on_write="on_create_write">
 					<field name="student_code"/>
 					<field name="student_name"/>
 			     	<field name="email"/>
