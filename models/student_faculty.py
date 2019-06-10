@@ -65,6 +65,7 @@ class student_faculty(models.Model):
                 action['views'] = [(self.env.ref('student_information.course_form_view').id, 'form')]
                 action['res_id'] = self.env['student.course'].id
                 action['view_mode'] = 'form'
+                action['domain'] =[('id', 'in' ,'res_model')]
                 return action
             else:
                 action['view_mode'] = 'tree'
