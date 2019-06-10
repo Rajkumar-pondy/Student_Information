@@ -34,22 +34,17 @@ class student_faculty(models.Model):
         for rec in self:
             rec.student_code = self.env['student.details'].search_count([])
             rec.student_count = rec.student_code
-            action = {
-             'name': 'Student Details',
-             'type': 'ir.actions.act_window',
-             'res_model': 'student.details',
-             'target': 'current',
-             }
-            if rec.ensure_one():
-                #student_code = student_code[0]
+            
+            self.ensure_one()
+            action=self.env.ref('student_information_action_window').read()[0]
+            student_count=self.mapped('student_code')
+            if len(student_count) > 1:
+                 action['domain'] = [('id', 'in', student_code.ids)]
+            elif student_count:
                 action['views'] = [(self.env.ref('student_information.student_form_view').id, 'form')]
-                action['res_id'] = self.env['student.details'].id
-                action['view_mode'] = 'form'
-                return action
-            else:
-                action['view_mode'] = 'tree,form'
-#                 action['domain'] = [('id', 'in', student_tree_view)]
-                return action
+                action['res_id'] = student_count.id
+            return action
+         
     @api.multi
     def compute_course_count(self):
         for rec in self:
@@ -62,10 +57,9 @@ class student_faculty(models.Model):
              'target': 'current',
              }
             if rec.ensure_one():
-                action['views'] = [(self.env.ref('student_information.course_form_view').id, 'form')]
-                action['res_id'] = self.env['student.course'].id
+                view_id = [(self.env.ref('student_information.course_form_view').id, 'form')]
+#                 action['res_id'] = self.env['student.course'].id
                 action['view_mode'] = 'form'
-                action['domain'] =[('id', 'in' ,'res_model')]
                 return action
             else:
                 action['view_mode'] = 'tree'
