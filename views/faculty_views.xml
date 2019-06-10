@@ -50,7 +50,7 @@
 			         	  </button> 
 			         	  
 			         	  <button name="compute_course_count" class="oe_stat_button" type="object" attrs="{'invisible': [('course_count','=',0)]}" 
-	                         icon="fa-list">
+			         	  icon="fa-list">
 	                       <field name="course_count" widget="statinfo" String="Course Details"/>
 			         	  </button> 
 	                </div>
@@ -85,9 +85,7 @@
 			</form>
 		</field>
 	</record>
-	  
-	  
-	  <menuitem id="menu_faculty" name="Faculty" parent="menu_college_main"/>
-	  <menuitem id="menu_faculty_info" name="Faculty Info" parent="menu_faculty" action="faculty_information_action_window"/>
 	
+	  <menuitem name="Faculty" id="menu_faculty" parent="menu_college_main" action="faculty_information_action_window" sequence="2"/>
+	 
 </odoo>

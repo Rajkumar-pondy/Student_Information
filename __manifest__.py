@@ -27,11 +27,11 @@
         'views/student_views.xml',
         'views/faculty_views.xml',
         'views/report_views.xml',
-        'views/templates.xml',
-        'views/fee_view.xml',
         'views/course_view.xml',
-        
-    ],
+        'views/fee_view.xml', 
+        'views/templates.xml',
+     
+        ],
     # only loaded in demonstration mode
     'demo': [
         'demo/demo.xml',

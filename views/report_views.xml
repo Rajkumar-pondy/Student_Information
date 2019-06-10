@@ -5,9 +5,8 @@
 			<field name="model">student.report</field>
 			<field name= "arch" type = "xml">
 			 <tree string="Student Report Card" decoration-success="result=='pass'" decoration-danger="result=='Fail'">
-			    <field name="student_id_report"/>
-			    <field name="faculty_report_id"/>
-			    <field name="student_name"/>
+			    <field name="student_report_id" widget="many2onebutton" />
+			    <field name="faculty_report_id" widget="many2onebutton"/>
 			    <field name="department"/>
 				<field name="report_code"/>
 				<field name="report_card_terms"/>	
@@ -23,9 +22,8 @@
 			 <form string="Student Report Card">
 			 <sheet>
 			 <group>
-			    <field name="student_id_report"/>
+			    <field name="student_report_id"/> 
 			    <field name="faculty_report_id"/>
-			    <field name="student_name"/>
 			    <field name="department"/>
 				<field name="report_code"/>
 				<field name="report_card_terms"/>	
@@ -44,8 +42,8 @@
       <field name="view_mode">tree,form</field>
      </record>
 	  
+ 
+      <menuitem id="menu_report_card" name="Student Report card" parent="menu_college_main" action="report_card_action_window" sequence="3"/>
+      
         
-        <menuitem id="menu_report_card" name="Student Report card" parent="menu_college_main"/>
-		<menuitem id="sub_menu_report_card" name="Report card" parent="menu_report_card" action="report_card_action_window"/>
-
 </odoo>

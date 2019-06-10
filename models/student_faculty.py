@@ -32,20 +32,20 @@ class student_faculty(models.Model):
     @api.multi
     def compute_student_counts(self):
         for rec in self:
-            rec.student_code = self.env['student.details'].search([])
-            rec.student_count = len(rec.student_code)
-            print(rec.student_count)
+            rec.student_code = self.env['student.details'].search_count([])
+            rec.student_count = rec.student_code
             action = {
              'name': 'Student Details',
              'type': 'ir.actions.act_window',
              'res_model': 'student.details',
              'target': 'current',
              }
-            if rec.student_count == 1:
+            if rec.ensure_one():
                 #student_code = student_code[0]
-#                 action['res_id'] = student_count
-                action['view_mode'] = 'form'
                 action['views'] = [(self.env.ref('student_information.student_form_view').id, 'form')]
+                action['res_id'] = self.env['student.details'].id
+                action['view_mode'] = 'form'
+                return action
             else:
                 action['view_mode'] = 'tree,form'
 #                 action['domain'] = [('id', 'in', student_tree_view)]
@@ -61,11 +61,13 @@ class student_faculty(models.Model):
              'res_model': 'student.course',
              'target': 'current',
              }
-            if rec.course_count == 1:
-                action['view_mode'] = 'form'
+            if rec.ensure_one():
                 action['views'] = [(self.env.ref('student_information.course_form_view').id, 'form')]
+                action['res_id'] = self.env['student.course'].id
+                action['view_mode'] = 'form'
+                return action
             else:
-                action['view_mode'] = 'tree,form'
+                action['view_mode'] = 'tree'
                 return action
      
     @api.depends('dob')
