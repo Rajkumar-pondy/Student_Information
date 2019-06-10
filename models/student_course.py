@@ -9,11 +9,11 @@ class student_course(models.Model):
     _rec_name="course_code"
     
     
-    course_code=fields.Char("Course Id",reqired=True,track_visibility='onchange')
+    course_code=fields.Char("Course Id",required=True,track_visibility='onchange')
 #     course_name=fields.Char("Course Name")
     
     #Relation Fields
-    course_stu_id=fields.Many2one('student.details',string="Student name", ondelete='restrict',delegate=True,required=True)
+    course_stu_id=fields.Many2one('student.details',string="Student name",delegate=True,required=True)
 
     fee_course_ids=fields.One2many('student.fee','course_fee_id',string="Fee course ids")
 

@@ -19,7 +19,7 @@ class student_faculty(models.Model):
     salary= fields.Float("Salary")
     
     student_count=fields.Integer(string='Student count',compute='compute_student_counts')
-    course_count=fields.Integer(string='Course count',compute='compute_course_count')
+#     course_count=fields.Integer(string='Course count',compute='compute_course_count')
     
     faculty_student_ids=fields.Many2many('student.details',string="Students Handling")
     
@@ -31,39 +31,46 @@ class student_faculty(models.Model):
 
     @api.multi
     def compute_student_counts(self):
-        for rec in self:
-            rec.student_code = self.env['student.details'].search_count([])
-            rec.student_count = rec.student_code
-            
-            self.ensure_one()
-            action=self.env.ref('student_information_action_window').read()[0]
-            student_count=self.mapped('student_code')
-            if len(student_count) > 1:
-                 action['domain'] = [('id', 'in', student_code.ids)]
-            elif student_count:
-                action['views'] = [(self.env.ref('student_information.student_form_view').id, 'form')]
-                action['res_id'] = student_count.id
-            return action
-         
-    @api.multi
-    def compute_course_count(self):
-        for rec in self:
-            rec.course_code = self.env['student.course'].search([])
-            rec.course_count=len(rec.course_code)
             action = {
-             'name': 'Student Course Details',
-             'type': 'ir.actions.act_window',
-             'res_model': 'student.course',
-             'target': 'current',
-             }
-            if rec.ensure_one():
-                view_id = [(self.env.ref('student_information.course_form_view').id, 'form')]
-#                 action['res_id'] = self.env['student.course'].id
-                action['view_mode'] = 'form'
+                      'name': 'Student Details',
+                      'type': 'ir.actions.act_window',
+                      'res_model': 'student.details',
+                      'target': 'current',
+                     }
+            self.ensure_one()
+            students=self.mapped('faculty_student_ids')
+            self.student_count=len(students)
+            if self.student_count>1:
+                action['domain'] = [('id', 'in', students.ids)]
+                action['view_mode'] = 'tree,form'
                 return action
-            else:
-                action['view_mode'] = 'tree'
+            elif students:
+                action['views'] = [(self.env.ref('student_information.student_form_view').id, 'form')]
+                action['res_id'] = students.id
                 return action
+           
+          
+#     @api.multi
+#     def compute_course_count(self):
+#         for rec in self:
+#             rec.course_code = self.env['student.course'].search_count([])
+#             rec.course_count=rec.course_code
+#             action = {
+#              'name': 'Student Course Details',
+#              'type': 'ir.actions.act_window',
+#              'res_model': 'student.course',
+#              'target': 'current',
+#              }
+#             rec.ensure_one()
+#             courses=self.mapped('faculty_course_ids')
+#             if len(courses)>1:
+#                 action['domain']=[('id','in','courses.ids')]
+#                 action['view-mode']='tree'
+#                 return action
+#             elif courses:
+#                 action['views']=[(self.env.ref('student_information.course_form_view').id,'form')]
+#                 action['res_id']=courses.id
+#                 return action
      
     @api.depends('dob')
     def _staff_age_calculate(self):
@@ -71,3 +78,13 @@ class student_faculty(models.Model):
             current_year=datetime.datetime.now().year
             birth_year=self.dob.year
             self.age=current_year-birth_year
+            
+
+        
+        
+        
+        
+        
+        
+        
+        

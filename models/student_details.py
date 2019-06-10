@@ -4,7 +4,9 @@ from odoo import models, fields, api
 from odoo.exceptions import ValidationError
 import datetime
 import re
+import random
 
+   
 class student_details(models.Model):
     _name = 'student.details'
     _inherit='mail.thread'
@@ -36,13 +38,14 @@ class student_details(models.Model):
     student_receipt_ids=fields.One2many('student.fee','fee_stu_id')
     
     student_course_ids=fields.One2many('student.course','course_stu_id')
-    
+       
+#     @api.depends('student_code')
+#     def random_student(self):
+#         chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+#         self.write({ ''.join(random.SystemRandom().choice(chars) for _ in range(6))})
+
 
     #Compute fields
-    @api.multi
-    def do_operation(records):
-        print(records.mapped('student_code'))
-    
     @api.depends('dob')
     def calculate_age(self):
         for rec in self:
@@ -75,6 +78,7 @@ class student_details(models.Model):
         self.write({
                     'states': 'finished',
                     })
+    
         
         
    
