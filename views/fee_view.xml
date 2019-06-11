@@ -9,7 +9,7 @@
 			    <field name="student_code"/>
 				<field name="fee_code"/>
 				<field name="semester_no"/>
-				<field name="tution_fee" widget="progressbar"/>
+				<field name="tution_fee"/>
 				<field name="course_fee_id" widget="many2onebutton"/>
 			</tree>
 			</field>
@@ -21,12 +21,17 @@
 			 <form string="Student Fee Receipt">
 			 <sheet>
 			 <group>
+			 <group>
 				<field name="fee_stu_id"/>
 				<field name="student_code"/>
 				<field name="fee_code"/>
 				<field name="semester_no"/>
-				<field name="tution_fee"/>
+			 </group>
+			 <group>
+				<field name="currency_id"/>
+				<field name="tution_fee" widget="monetary"/>
 				<field name="course_fee_id"/>
+			 </group>
 			 </group>
 			   
 				</sheet>

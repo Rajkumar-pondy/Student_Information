@@ -79,7 +79,6 @@ class student_details(models.Model):
                     'states': 'finished',
                     })
     
-        
-        
+    
    
    

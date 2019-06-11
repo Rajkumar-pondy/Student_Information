@@ -18,7 +18,7 @@
 					<field name="report_student_ids"/>
 					<field name="student_receipt_ids"/>
 					<field name="student_course_ids"/>
-					<field name="image" type="base64"/>
+					<field name="image"/>
 				</tree>
 			</field>
 		</record>
@@ -76,15 +76,15 @@
                             </h1>
                       </div>
                       </div>
-					     <group string="Student Information">
-						 	<group>
+					     <group name="student_details_main_group" string="Student Information">
+						 	<group name="student_details_group1">
 						 	
 						 	    <field name="student_code"/>
 						 	    <field name="gender"/>
 						 		<field name="dob"/>
 						 		<field name="age"/>
 						 	</group>
-						 	<group>
+						 	<group name="student_details_group2">
 						 	    <field name="department"/>
 						 	    <field name="registration_date"/>
 						 		<field name="email"/>

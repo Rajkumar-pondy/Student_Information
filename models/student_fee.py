@@ -8,6 +8,7 @@ class student_fee(models.Model):
     fee_code=fields.Char("Fee Receipt Id")
     semester_no=fields.Char("Semester No")
     tution_fee=fields.Float("Tuition Fee",group_operator="avg")
+    currency_id =fields.Many2one('res.currency','Currency')
     
     #Relational Fields
     fee_stu_id=fields.Many2one('student.details',string="Name Student",delegate=True,required=True)

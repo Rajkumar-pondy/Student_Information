@@ -8,7 +8,7 @@ class student_faculty(models.Model):
     _rec_name='faculty_name'
     
     faculty_code= fields.Char("Faculty Id",required=True)
-    faculty_name= fields.Char("Faculty Name")
+    faculty_name= fields.Char("Faculty Name",separator=",")
     email = fields.Char('Email')
     contact = fields.Char('Contact Number')
     dob = fields.Date('Date of Birth')
@@ -38,13 +38,14 @@ class student_faculty(models.Model):
                       'target': 'current',
                      }
             self.ensure_one()
-            students=self.mapped('faculty_student_ids')
+#             students=self.mapped('faculty_student_ids')
+            students=self.faculty_student_ids
             self.student_count=len(students)
             if self.student_count>1:
                 action['domain'] = [('id', 'in', students.ids)]
                 action['view_mode'] = 'tree,form'
                 return action
-            elif students:
+            else:
                 action['views'] = [(self.env.ref('student_information.student_form_view').id, 'form')]
                 action['res_id'] = students.id
                 return action

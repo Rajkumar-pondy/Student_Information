@@ -2,6 +2,7 @@ eclipse.preferences.version=1
 encoding//controllers/__init__.py=utf-8
 encoding//controllers/controllers.py=utf-8
 encoding//models/__init__.py=utf-8
+encoding//models/inherit_student_details_view.py=utf-8
 encoding//models/student_details.py=utf-8
 encoding/__init__.py=utf-8
 encoding/__manifest__.py=utf-8

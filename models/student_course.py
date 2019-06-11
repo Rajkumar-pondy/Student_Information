@@ -16,5 +16,14 @@ class student_course(models.Model):
     course_stu_id=fields.Many2one('student.details',string="Student name",delegate=True,required=True)
 
     fee_course_ids=fields.One2many('student.fee','course_fee_id',string="Fee course ids")
+    
+    @api.multi
+    def name_get(self):
+        res=[]
+        records=self.course_stu_id
+        for record in records:
+            res.append((record.id, record.student_name+','+record.student_code))
+            return res
 
     
+        
