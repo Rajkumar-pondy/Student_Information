@@ -11,13 +11,13 @@ class student_details(models.Model):
     _name = 'student.details'
     _inherit='mail.thread'
     _description="Student Information"
-    _rec_name='student_name'
-#     _sql_constraints = [('student_code','unique(student_code)', 'Student code must be unique')]
+    _rec_name='name'
 
     #Basic fields
-    student_code=fields.Char('Student id')
-    student_name = fields.Char('Student Name')
-    email = fields.Char('Email', track_visibility='onchange')
+    student_code=fields.Char(required=True,copy=False,default='New')
+    name = fields.Char('Name')
+    email = fields.Char('Email')
+    active=fields.Boolean()
     contact = fields.Char('Contact Number')
     dob = fields.Date('Date of Birth')
     registration_date = fields.Datetime('Registration Date')
@@ -30,20 +30,12 @@ class student_details(models.Model):
                             ('progress','In progress'),
                             ('finished','Done'),
                             ], default='started',track_visibility='onchange')
-    
-
     #Relational_fields
     report_student_ids= fields.One2many('student.report','student_report_id')
     
     student_receipt_ids=fields.One2many('student.fee','fee_stu_id')
     
     student_course_ids=fields.One2many('student.course','course_stu_id')
-       
-#     @api.depends('student_code')
-#     def random_student(self):
-#         chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
-#         self.write({ ''.join(random.SystemRandom().choice(chars) for _ in range(6))})
-
 
     #Compute fields
     @api.depends('dob')
@@ -53,8 +45,9 @@ class student_details(models.Model):
                 current_year=datetime.datetime.now().year
                 birth_year=self.dob.year
                 rec.age=current_year- birth_year
+    
     @api.onchange('email')
-    def Email(self):
+    def email_validation(self):
         for rec in self:
             if rec.email:
                 match=re.match('^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$', rec.email)
@@ -78,7 +71,22 @@ class student_details(models.Model):
         self.write({
                     'states': 'finished',
                     })
+    @api.multi
+    def name_get(self):
+        context={}
+        res=[]
+        for record in self:
+            if context.get('student_special_name',False):
+                res.append((record.id,record.name))
+            else:
+                res.append((record.id,'%s,%s' %(record.name,record.department)))
+        return res
+    @api.model
+    def create(self,vals):
+        if vals.get('student_code','New')=='New':
+             vals['student_code'] = self.env['ir.sequence'].next_by_code('student.details') or '/'
+        return super(student_details, self).create(vals)
     
-    
-   
-   
+    def toggle_active(self):
+        res=super(student_details,self).toggle_active()
+        return res

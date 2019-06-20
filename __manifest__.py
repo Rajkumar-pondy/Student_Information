@@ -19,7 +19,7 @@
     'version': '12.0',
 
     # any module necessary for this one to work correctly
-    'depends': ['base','mail','product','payment'],
+    'depends': ['base','mail','sale','sms'],
 
     # always loaded
     'data': [
@@ -30,8 +30,8 @@
         'views/course_view.xml',
         'views/fee_view.xml', 
         'views/templates.xml',
-        'views/product_template.xml',
         'views/inherit_student_details_view.xml',
+        'views/sale_order.xml'
      
         ],
     # only loaded in demonstration mode

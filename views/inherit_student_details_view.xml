@@ -1,36 +1,43 @@
 <odoo>
 
 
-<record id="student_details_inherited_form_view" model="ir.ui.view">
-<field name="name">student.details.inherited.form.view</field>
-<field name="model">student.details</field>
-<field name="inherit_id" ref="student_information.student_form_view"/>
-<field name="arch" type="xml">
-<data>
-<xpath expr="//group[@name='student_details_main_group']//group[@name='student_details_group1']/field[@name='student_code']" position="after">
-<field name="father_name"/>
-</xpath>
-</data>
+    <record id="student_details_inherited_form_view"
+        model="ir.ui.view">
+        <field name="name">student.details.inherited.form.view</field>
+        <field name="model">student.details</field>
+        <field name="inherit_id"
+            ref="student_information.student_form_view" />
+        <field name="arch" type="xml">
+            <data>
+                <xpath
+                    expr="//group[@name='student_details_main_group']//field[@name='gender']"
+                    position="after">
+                    <field name="father_name" />
+                </xpath>
+            </data>
 
 
-</field>
-</record>
+        </field>
+    </record>
 
 
-<record id="student_details_inherited_tree_view" model="ir.ui.view">
-<field name="name">student.details.inherited.tree.view</field>
-<field name="model">student.details</field>
-<field name="inherit_id" ref="student_information.student_tree_view"/>
-<field name="arch" type="xml">
-<data>
-<xpath expr="/tree/field[@name='student_code']" position="after">
-<field name="father_name"/>
-</xpath>
-</data>
+    <record id="student_details_inherited_tree_view"
+        model="ir.ui.view">
+        <field name="name">student.details.inherited.tree.view</field>
+        <field name="model">student.details</field>
+        <field name="inherit_id"
+            ref="student_information.student_tree_view" />
+        <field name="arch" type="xml">
+            <data>
+                <xpath expr="/tree/field[@name='gender']"
+                    position="after">
+                    <field name="father_name" />
+                </xpath>
+            </data>
 
 
-</field>
-</record>
+        </field>
+    </record>
 
 
 

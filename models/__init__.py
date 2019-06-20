@@ -4,6 +4,6 @@ from . import student_faculty
 from . import student_report
 from . import student_course
 from . import student_fee
-from . import product_template
 from . import inherit_student_details_view
+from . import sale_order
 

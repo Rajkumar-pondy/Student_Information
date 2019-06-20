@@ -1,53 +1,68 @@
 <odoo>
 
-	  <record id="fee_tree_view" model="ir.ui.view">
-            <field name="name">student_fee_tree</field>
-			<field name="model">student.fee</field>
-			<field name= "arch" type = "xml">
-			 <tree string="Student Fee Receipt">
-			    <field name="fee_stu_id" widget="many2onebutton"/>
-			    <field name="student_code"/>
-				<field name="fee_code"/>
-				<field name="semester_no"/>
-				<field name="tution_fee"/>
-				<field name="course_fee_id" widget="many2onebutton"/>
-			</tree>
-			</field>
-		</record>
-        <record id="fee_form_view" model="ir.ui.view">
-            <field name="name">student_fee_form</field>
-			<field name="model">student.fee</field>
-			<field name= "arch" type = "xml">
-			 <form string="Student Fee Receipt">
-			 <sheet>
-			 <group>
-			 <group>
-				<field name="fee_stu_id"/>
-				<field name="student_code"/>
-				<field name="fee_code"/>
-				<field name="semester_no"/>
-			 </group>
-			 <group>
-				<field name="currency_id"/>
-				<field name="tution_fee" widget="monetary"/>
-				<field name="course_fee_id"/>
-			 </group>
-			 </group>
-			   
-				</sheet>
-				
-			</form>
-			</field>
-		</record>
-      
-      
-      <record model="ir.actions.act_window" id="fee_action_window">
-      <field name="name">Student Fee Receipt</field>
-      <field name="res_model">student.fee</field>
-      <field name="view_mode">tree,form</field>
-     </record>
-	  
-        
-        <menuitem id="menu_fee" name="Fee Receipt" parent="menu_college_main" action="fee_action_window" sequence="5"/>
+    <record id="fee_tree_view" model="ir.ui.view">
+        <field name="name">student_fee_tree</field>
+        <field name="model">student.fee</field>
+        <field name="arch" type="xml">
+            <tree string="Student Fee Receipt">
+                <field name="fee_stu_id" widget="many2onebutton" />
+                <field name="student_code" />
+                <field name="fee_code" />
+                <field name="semester_no" />
+                <field name="tution_fee" />
+                <field name="course_fee_id"
+                    widget="many2onebutton" />
+            </tree>
+        </field>
+    </record>
+    <record id="fee_form_view" model="ir.ui.view">
+        <field name="name">student_fee_form</field>
+        <field name="model">student.fee</field>
+        <field name="arch" type="xml">
+            <form string="Student Fee Receipt">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="fee_stu_id"
+                                context="{'student_special_name':True}" />
+                            <field name="student_code" />
+                            <field name="fee_code" />
+                            <field name="course_fee_id"
+                                context="{'course_special_name':True}" />
+                        </group>
+                        <group>
+                            <field name="semester_no" />
+                            <field name="currency_id"/>
+                            <field name="tution_fee"
+                                widget="monetary" />
+                            <field name="exam_fee" widget="monetary"/>
+                            <field name="total_fee" widget="monetary"/>
+                            
+                        </group>
+                    </group>
+
+                </sheet>
+
+            </form>
+        </field>
+    </record>
+
+    <record id="seq_student_fee" model="ir.sequence">
+        <field name="name">Student Fee</field>
+        <field name="code">student.fee</field>
+        <field name="prefix">FEE</field>
+        <field name="padding">4</field>
+    </record>
+
+    <record model="ir.actions.act_window" id="fee_action_window">
+        <field name="name">Student Fee Receipt</field>
+        <field name="res_model">student.fee</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <menuitem id="menu_fee" name="Fee Receipt"
+        parent="menu_college_main" action="fee_action_window"
+        sequence="5" />
 
 </odoo>

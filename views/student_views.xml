@@ -1,133 +1,137 @@
 <odoo>
-	
-		<record id="student_tree_view" model="ir.ui.view">
-			<field name="name">student_tree_view</field>
-			<field name="model">student.details</field>
-			<field name= "arch" type = "xml">
-             <tree string="Student Information" decoration-primary="department=='CSE'" decoration-info="department=='ECE'" 
-             default_order="registration_date asc" limit='50'>
-					<field name="student_code"/>
-					<field name="student_name"/>
-			     	<field name="email"/>
-			 		<field name="contact"/>
-			 		<field name="dob"/>
-			 		<field name="age"/>
-			 		<field name="registration_date"/>
-					<field name="gender"/>
-					<field name="department"/>
-					<field name="report_student_ids"/>
-					<field name="student_receipt_ids"/>
-					<field name="student_course_ids"/>
-					<field name="image"/>
-				</tree>
-			</field>
-		</record>
-	
-	<!-- <record model="ir.ui.view" id="test_kanban_view">
-    <field name="name">student_kanban_view</field>
-    <field name="model">student.student</field>
-    <field name="type">kanban</field>
-    <field name="arch" type="xml">
-        <kanban> 
-          <field name="image"/>
-          <field name="student_code"/>
-            <templates>
-                <t t-name="kanban-box">
-                   <div class="oe_resource_vignette">
-                        <div class="oe_kanban_image">
-                            <a type="open">
-                            <img t-att-src="kanban_image('student.student','image')" alt="student image"/></a>
-                   </div>
-                        <div class="oe_kanban_details">
-                            <ul type="None">
-                            <li><b>Name:</b><field name="student_name"/></li>
-                            <li><b>Department:</b><field name="department"/></li>   
-							<li><b>Email:</b><field name="email" widget='email'/></li>                                
-                            </ul>
-                        </div>
-                   </div>                       
-                </t>
-            </templates>
-        </kanban>
-    </field>
-</record> -->
-		
-		
-		
-		
-		<record id="student_form_view" model="ir.ui.view">
-			<field name="name">student_form_view</field>
-			<field name="model">student.details</field>
-			<field name="arch" type="xml">
-				<form>
-				<header>
-				    <button string="Set to started" type="object" name="progress_started" attrs="{'invisible': [('states','!=','progress')]}"/>
-	    			<button string="In progress" type="object" name="progress_progressbar" attrs="{'invisible': [('states','=','progress')]}"/>
-	    			<button string="Done" type="object" name="done_progressbar" attrs="{'invisible': [('states','=','finished')]}"/>
-	    			<field name="states" widget="statusbar"/> 
-				 </header>
-					<sheet>
-					 <div id="student_container">
-                        <field name="image" widget="image" class="oe_avatar"/>
-                        <div class="oe_title">
-                            <label for="student_name" class="oe_edit_only"/>
-                            <h1>
-                                <field name="student_name" placeholder="Student's Name"/>
-                            </h1>
-                      </div>
-                      </div>
-					     <group name="student_details_main_group" string="Student Information">
-						 	<group name="student_details_group1">
-						 	
-						 	    <field name="student_code"/>
-						 	    <field name="gender"/>
-						 		<field name="dob"/>
-						 		<field name="age"/>
-						 	</group>
-						 	<group name="student_details_group2">
-						 	    <field name="department"/>
-						 	    <field name="registration_date"/>
-						 		<field name="email"/>
-						 		<field name="contact"/>
-						 	</group>
-						 </group>
-						 
-						 <notebook>
-							
-							<page string="Report Card">
-						 	 	<field name="report_student_ids"/>
-							</page>
-							
-							<page string="Fee Receipt">
-							
-								<field name="student_receipt_ids"/>
-								 
-							</page>
-						     
-						     <page string="Course">
-								<field name="student_course_ids"/>
-							</page>
-						
-						</notebook> 
-					
-					</sheet>
-					
-					<div class="oe_chatter">
-					<field name="message_follower_ids" widget="mail_followers"/>
-					<field name="message_ids" widget="mail_thread"/>
-					</div>
-				</form>
-			</field>
-		</record>
-	 
-	 <record model="ir.actions.act_window" id="student_information_action_window">
-      <field name="name">Student Details</field>
-      <field name="res_model">student.details</field>
-      <field name="view_mode">tree,form</field>
+
+    <record id="student_tree_view" model="ir.ui.view">
+        <field name="name">student_tree_view</field>
+        <field name="model">student.details</field>
+        <field name="arch" type="xml">
+            <tree string="Student Information"
+                decoration-primary="department=='CSE'"
+                decoration-info="department=='ECE'"
+                default_order="registration_date asc" limit='50'>
+                <field name="student_code" />
+                <field name="name" />
+                <field name="email" />
+                <field name="contact" />
+                <field name="dob" />
+                <field name="age" />
+                <field name="registration_date" />
+                <field name="gender" />
+                <field name="department" />
+                <field name="report_student_ids" />
+                <field name="student_receipt_ids" />
+                <field name="student_course_ids" />
+                <field name="image" widget="image" height="40" />
+            </tree>
+        </field>
     </record>
-    
-    <menuitem id="menu_college_main" name="College Management"/>
-	
-	<menuitem id="menu_student_main" name="Student" parent="menu_college_main" action="student_information_action_window" sequence="1"/>	
-		
+
+    <record id="student_form_view" model="ir.ui.view">
+        <field name="name">student_form_view</field>
+        <field name="model">student.details</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button string="Set to started" type="object"
+                        name="progress_started"
+                        attrs="{'invisible': [('states','=','started')]}" />
+                    <button string="In progress" type="object"
+                        name="progress_progressbar"
+                        attrs="{'invisible': [('states','=','progress')]}" />
+                    <button string="Done" type="object"
+                        name="done_progressbar"
+                        attrs="{'invisible': [('states','=','finished')]}" />
+                    <field name="states" widget="statusbar" />
+                </header>
+                <sheet>
+                 <div class="oe_button_box" name="button_box">
+                    <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
+                       <field name="active" widget="boolean_button" options='{"terminology": "archive"}'/>
+                    </button>
+                  </div>
+                    <div id="student_container">
+                        <field name="image" widget="image"
+                            class="oe_avatar" />
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only" />
+                            <h1>
+                                <field name="name"
+                                    placeholder="Student's Name" />
+                            </h1>
+                        </div>
+                    </div>
+                    <group name="student_details_main_group"
+                        string="Student Information">
+                        <div>
+                            <h1>
+                                <field name="student_code"
+                                    readonly="1" />
+                            </h1>
+                        </div>
+                        <separator />
+                        <group name="student_details_group1">
+                            <field name="gender" />
+                            <field name="dob" />
+                            <field name="age" />
+                        </group>
+                        <group name="student_details_group2">
+                            <field name="department" />
+                            <field name="registration_date" />
+                            <field name="email" />
+                            <field name="contact" widget="phone" />
+
+                        </group>
+                    </group>
+
+                    <notebook>
+
+                        <page string="Report Card">
+                            <field name="report_student_ids"
+                                readonly="1" />
+                        </page>
+
+                        <page string="Fee Receipt">
+
+                            <field name="student_receipt_ids"/>
+
+                        </page>
+
+                        <page string="Course">
+                            <field name="student_course_ids" />
+                        </page>
+
+                    </notebook>
+
+                </sheet>
+
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"
+                        widget="mail_followers" />
+                    <field name="message_ids" widget="mail_thread" />
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="seq_student_details" model="ir.sequence">
+        <field name="name">Student Details</field>
+        <field name="code">student.details</field>
+        <field name="prefix">STD</field>
+        <field name="padding">4</field>
+    </record>
+
+
+    <record id="student_information_action_window"
+        model="ir.actions.act_window">
+        <field name="name">Student Details</field>
+        <field name="res_model">student.details</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_college_main" name="College Management" />
+
+    <menuitem id="menu_student_main" name="Student"
+        parent="menu_college_main"
+        action="student_information_action_window" sequence="1" />
+
+
 </odoo>
