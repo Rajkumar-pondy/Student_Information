@@ -125,13 +125,14 @@
         <field name="name">Student Details</field>
         <field name="res_model">student.details</field>
         <field name="view_mode">tree,form</field>
+        <field name="target">current</field>
     </record>
-
+    
     <menuitem id="menu_college_main" name="College Management" />
 
     <menuitem id="menu_student_main" name="Student"
         parent="menu_college_main"
-        action="student_information_action_window" sequence="1" />
+        action="student_information_action_window" sequence="1"/>
 
 
 </odoo>
