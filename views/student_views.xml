@@ -119,7 +119,6 @@
         <field name="padding">4</field>
     </record>
 
-
     <record id="student_information_action_window"
         model="ir.actions.act_window">
         <field name="name">Student Details</field>
@@ -133,6 +132,5 @@
     <menuitem id="menu_student_main" name="Student"
         parent="menu_college_main"
         action="student_information_action_window" sequence="1"/>
-
 
 </odoo>

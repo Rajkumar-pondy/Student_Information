@@ -7,6 +7,7 @@ class student_course(models.Model):
     
     
     course_code=fields.Char("Course Id",required=True,track_visibility='onchange')
+ 
     #Relation Fields
     course_stu_id=fields.Many2one('student.details',string="Student name",delegate=True,required=True)
 

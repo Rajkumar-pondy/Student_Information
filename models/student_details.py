@@ -1,12 +1,10 @@
 # -*- coding: utf-8 -*-
-
 from odoo import models, fields, api
 from odoo.exceptions import ValidationError
 import datetime
 import re
 import random
 
-   
 class student_details(models.Model):
     _name = 'student.details'
     _inherit='mail.thread'
@@ -14,7 +12,7 @@ class student_details(models.Model):
     _rec_name='name'
 
     #Basic fields
-    student_code=fields.Char(required=True,copy=False,default='New')
+    student_code=fields.Char(required=True,copy=False,index=True,default='New')
     name = fields.Char('Name')
     email = fields.Char('Email')
     active=fields.Boolean()
@@ -40,24 +38,22 @@ class student_details(models.Model):
     #Compute fields
     @api.depends('dob')
     def calculate_age(self):
-        for rec in self:
-            if rec.dob:
+            if self.dob:
                 current_year=datetime.datetime.now().year
                 birth_year=self.dob.year
-                rec.age=current_year- birth_year
+                self.age=current_year- birth_year
     
     @api.onchange('email')
     def email_validation(self):
-        for rec in self:
-            if rec.email:
-                match=re.match('^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$', rec.email)
+            if self.email:
+                match=re.match('^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$', self.email)
                 if match==None:
                     raise ValidationError('Not a valid Email ID')
     @api.one
     def progress_started(self):
         self.write({
                     'states': 'started',
-                    })
+                  })
    
     @api.one
     def progress_progressbar(self):
