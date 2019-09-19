@@ -19,7 +19,6 @@ class student_faculty(models.Model):
     department = fields.Char("Department Name")
     salary= fields.Float("Salary",digits=(9, 2)) 
     edit_ok=fields.Boolean("Can be edit",default=True)
-    resource_calendar_id=fields.Many2one('resource.calendar',string="Working Hours",help="Faculty working hours")
     color_field=fields.Char()
     
     student_count=fields.Integer(string='Student count',compute='compute_student_counts')

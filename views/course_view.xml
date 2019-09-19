@@ -20,7 +20,7 @@
         <field name="arch" type="xml">
             <form string="Student Course">
             <header>
-            <button type="action" name="%(fee_action_window)d" string="course fee"></button>
+            <button name="%(fee_action_window)d" type="action" string="course fee"></button>
             </header>
                 <sheet>
                     <group>

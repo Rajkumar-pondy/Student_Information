@@ -14,7 +14,6 @@
                 <field name="age" />
                 <field name="department" />
                 <field name="salary" />
-                <field name="color_field" widget="color"/>
             </tree>
         </field>
     </record>
@@ -75,7 +74,6 @@
                             <field name="age" />
                             <field name="department" />
                             <field name="salary" />
-                            <field name="resource_calendar_id"/>
                         </group>
                         <group>
                             <field name="faculty_student_ids"

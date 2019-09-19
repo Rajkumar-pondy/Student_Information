@@ -21,7 +21,7 @@ class student_details(models.Model):
     registration_date = fields.Datetime('Registration Date')
     image = fields.Binary('Image',store=True)
     gender = fields.Selection([('male','Male'),('female','Female')], string='Gender')
-    age = fields.Integer("Age",compute='calculate_age',store=True)
+    age = fields.Integer("Age",compute='calculate_age',store=True,readonly=False)
     department = fields.Char("Department Name")
     states=fields.Selection([
                             ('started','Set to started'),

@@ -22,6 +22,9 @@
         <field name="arch" type="xml">
             <form string="Student Fee Receipt">
                 <sheet>
+                <div>
+                <field name="image" widget="image" class="oe_avatar"/>
+                </div>
                     <group>
                         <group>
                             <field name="fee_stu_id"

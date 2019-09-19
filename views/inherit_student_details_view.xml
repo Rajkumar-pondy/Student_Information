@@ -15,9 +15,7 @@
                     <field name="father_name" />
                 </xpath>
             </data>
-
-
-        </field>
+           </field>
     </record>
 
 

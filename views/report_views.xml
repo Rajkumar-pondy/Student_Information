@@ -25,6 +25,9 @@
         <field name="arch" type="xml">
             <form string="Student Report Card">
                 <sheet>
+                <div>
+                <field name="image" widget='image' class="oe_avatar"/>
+                </div>
                     <group>
                         <field name="student_report_id" />
                         <field name="faculty_report_id" />

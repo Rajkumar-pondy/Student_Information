@@ -31,16 +31,16 @@
         <field name="arch" type="xml">
             <form>
                 <header>
-                    <button string="Set to started" type="object"
+                    <button class="btn-primary" string="Set to started" type="object"
                         name="progress_started"
                         attrs="{'invisible': [('states','=','started')]}" />
-                    <button string="In progress" type="object"
+                    <button class="btn-primary" string="In progress" type="object"
                         name="progress_progressbar"
                         attrs="{'invisible': [('states','=','progress')]}" />
-                    <button string="Done" type="object"
+                    <button class="btn-primary" string="Done" type="object"
                         name="done_progressbar"
                         attrs="{'invisible': [('states','=','finished')]}" />
-                    <field name="states" widget="statusbar" />
+                    <field name="states" widget="statusbar"/>
                 </header>
                 <sheet>
                  <div class="oe_button_box" name="button_box">
@@ -124,7 +124,6 @@
         <field name="name">Student Details</field>
         <field name="res_model">student.details</field>
         <field name="view_mode">tree,form</field>
-        <field name="target">current</field>
     </record>
     
     <menuitem id="menu_college_main" name="College Management" />
